@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border-radius Previewer</title>
+    <style>
+        .item-1 {
+            grid-area: myLeft;
+        }
+        .item-2 {
+            grid-area: myRigth;
+        }
+        .item-3 {
+            grid-area: mytop;
+        }
+        .item-4 {
+            grid-area: mybottom;
+        }
+        .item-5 {
+            grid-area: myContainer;
+        }
+        .grid {
+            display: grid;
+            grid-template-areas: 
+            'myLeft myContainer myRigth'
+            'mytop myContainer mybottom'
+            ;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="item-1">
+            <input id="left" type="text" placeholder="left"></input>
+        </div>
+        <div class="item-2">
+            <input id="rigth" type="text" placeholder="rigth"></input>
+        </div>
+        <div class="item-3">
+            <input id="top" type="text" placeholder="top"></input>
+        </div>
+        <div class="item-4">
+            <input id="bottom" type="text" placeholder="bottom"></input>
+        </div>
+        <div class="item-5" id="container"></div>
+    </div>
+    
+    <script>
+
+        let left = document.querySelector("#left");
+        let rigth = document.querySelector("#rigth");
+
+        let container = document.getElementById('container');
+        container.style.background = 'red'; 
+        container.style.height = '100px'; 
+        container.style.width = '100px';
+        
+        left.addEventListener('keydown', function() {
+        console.log('input', this.value);
+        rigth.value = this.value;
+        container.style.borderRadius = this.value + "px";
+        
+
+        }, false);
+
+        rigth.addEventListener('keydown', function(){
+            container.style.borderTopRightRadius = this.value + "px";
+        }, false);
+        
+        
+
+
+    </script>
+
+
+
+
+</body>
+</html>
