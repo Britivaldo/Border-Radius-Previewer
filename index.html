@@ -19,6 +19,7 @@
         }
         .item-5 {
             grid-area: myContainer;
+            
         }
         .grid {
             display: grid;
@@ -26,6 +27,11 @@
             'myLeft myContainer myRigth'
             'mytop myContainer mybottom'
             ;
+        }
+
+        textarea {
+            width: 200px;
+            height: 100px;
         }
     </style>
 </head>
@@ -38,18 +44,24 @@
             <input id="rigth" type="text" placeholder="rigth"></input>
         </div>
         <div class="item-3">
-            <input id="top" type="text" placeholder="top"></input>
+            <input id="bottomLeft" type="text" placeholder="top"></input>
         </div>
         <div class="item-4">
-            <input id="bottom" type="text" placeholder="bottom"></input>
+            <input id="bottomRight" type="text" placeholder="bottom"></input>
         </div>
-        <div class="item-5" id="container"></div>
+        <div class="item-5" id="container"> </div>
     </div>
+    <textarea id="code">
+
+    </textarea>
     
     <script>
 
         let left = document.querySelector("#left");
-        let rigth = document.querySelector("#rigth");
+        let right = document.querySelector("#rigth");
+        let bottomLeft = document.querySelector("#bottomLeft");
+        let bottomRight = document.querySelector("#bottomRight");
+        let code = document.querySelector("#code");
 
         let container = document.getElementById('container');
         container.style.background = 'red'; 
@@ -57,24 +69,44 @@
         container.style.width = '100px';
         
         left.addEventListener('keydown', function() {
-        console.log('input', this.value);
-        rigth.value = this.value;
+        console.log('left', this.value);
+
         container.style.borderRadius = this.value + "px";
         
+        if(this.value){
+            code.value = 'border-radius:'+ this.value +'px;';
+        } 
+        if(right.value){
+            
+            code.value = 'border-radius:'+ right.value +'px;';
+            console.log(code.value);
+        }
+        if(bottomLeft.value){
+            code.value += '\n' + 'border-radius:'+ bottomLeft.value +'px;';
+            console.log(code.value);
+        }
 
         }, false);
 
-        rigth.addEventListener('keydown', function(){
+        right.addEventListener('keydown', function(){
             container.style.borderTopRightRadius = this.value + "px";
+
+            if(left.value){
+                console.log(left.value);
+            }
+
+        }, false);
+
+        bottomLeft.addEventListener('keydown', function(){
+            container.style.borderBottomLeftRadius = this.value + "px";
+
+        }, false);
+
+        bottomRight.addEventListener('keydown', function(){
+            container.style.borderBottomRightRadius = this.value + "px";
         }, false);
         
-        
-
-
     </script>
-
-
-
 
 </body>
 </html>
